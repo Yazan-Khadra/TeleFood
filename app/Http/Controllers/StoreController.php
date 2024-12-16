@@ -4,13 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Store\ProductResource;
 use App\Http\Resources\Store\StoreResource;
+<<<<<<< HEAD
 use App\Models\Category;
+=======
+
+>>>>>>> 08a1fb44af0bcdbae3fe93da68abfca7411f9a4d
 use App\Models\Governorate;
 use App\Models\Store;
 use App\Models\StoreGovernorate;
 use App\Traits\AddStore;
 use App\Traits\JsonResponseTrait;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\DB;
+>>>>>>> 08a1fb44af0bcdbae3fe93da68abfca7411f9a4d
 use Illuminate\Support\Facades\Validator;
 
 class StoreController extends Controller{
@@ -45,8 +53,29 @@ class StoreController extends Controller{
         $this->AddStore($request,$request->store_id);
         return $this->JsonResponse('Branch Added Successfully',201);
     }
+<<<<<<< HEAD
     public function Delete(request $request){
         Store::where('id',$request->store_id)->delete();
+=======
+    public function Update(request $request){
+        $validation=Validator::make($request->all(),[
+            'name'=>'required|string|unique:stores',
+            'description'=>'required|string',
+            'image_url'=>'required|string',
+            'rate'=>'required',
+            'governorate'=>'required|string',
+            'location'=>'required|string',
+            'category'=>'required|string',
+        ]);
+        if($validation->fails()){
+            return $this->JsonResponse($validation->errors(),400);
+        }
+    }
+   
+
+    public function DeleteStore($id){
+        Store::find($id)->delete();
+>>>>>>> 08a1fb44af0bcdbae3fe93da68abfca7411f9a4d
         return $this->JsonResponse('Deleted Successfully',200);
     }
     public function DeleteBranch(Request $request){
@@ -54,6 +83,13 @@ class StoreController extends Controller{
         return $this->JsonResponse('Branch Deleted Successfully',200);
 
     }
+<<<<<<< HEAD
+=======
+    public function DeleteAll(){
+        DB::table('stores')->delete();
+        return $this->JsonResponse('All Stores Deleted Successfully',200);
+    }
+>>>>>>> 08a1fb44af0bcdbae3fe93da68abfca7411f9a4d
     public function Index(){
         $stores=Store::all();
         return StoreResource::collection($stores);
@@ -66,7 +102,10 @@ class StoreController extends Controller{
         }
         $products=$store->Products;
        
+<<<<<<< HEAD
        
+=======
+>>>>>>> 08a1fb44af0bcdbae3fe93da68abfca7411f9a4d
         return ProductResource::collection($products);
         
     }

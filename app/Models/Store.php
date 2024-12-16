@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
 class Store extends Model{
+<<<<<<< HEAD
+=======
+    use Searchable;
+>>>>>>> 08a1fb44af0bcdbae3fe93da68abfca7411f9a4d
     protected $fillable=[
         'name',
         'description',

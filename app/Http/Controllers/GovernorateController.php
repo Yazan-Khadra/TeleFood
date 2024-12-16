@@ -17,6 +17,12 @@ class GovernorateController extends Controller{
         ]);
         $this->Cache();
     }
+<<<<<<< HEAD
+=======
+    public function Update(){
+        
+    }
+>>>>>>> 08a1fb44af0bcdbae3fe93da68abfca7411f9a4d
     public function Cache(){
         Cache::put($this->goverorate_info->name,$this->goverorate_info->id);
     }
